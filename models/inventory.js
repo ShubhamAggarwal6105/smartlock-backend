@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-    name: String,
-    club: String,
-    type: String,
-})
+
+    name: {type:String,required:true},
+    club: {type:String,required:true},
+    type: {type:String,required:true}
+
+});
 
 export const Inventory = mongoose.model("Inventory", schema);
