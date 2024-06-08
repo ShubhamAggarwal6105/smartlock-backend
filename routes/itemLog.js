@@ -1,12 +1,11 @@
-import mongoose from "mongoose";
+import express from "express";
+import { requestItem, updateItemStatus, returnItem, getItemLogs } from "../controllers/itemLog.js";
 
-const itemLogSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    issued_by: { type: String, required: true },
-    status: { type: String, default: 'pending' },
-    reviewer: { type: String, default: null },
-    time: { type: Date, default: Date.now },
-    type: { type: String, required: true }
-});
+const router = express.Router();
 
-export const ItemLog = mongoose.model("ItemLog", itemLogSchema);
+router.post("/request", requestItem);
+router.put("/update/:id", updateItemStatus);
+router.post("/return", returnItem);
+router.get("/logs", getItemLogs);
+
+export default router;
